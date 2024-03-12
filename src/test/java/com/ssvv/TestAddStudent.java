@@ -76,5 +76,21 @@ public class TestAddStudent {
         assertEquals(students.next(), newStudent1);
         assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent2));
         assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent3));
+
+        this.service.deleteStudent("1111");
+    }
+
+    @Test
+    void testAddStudentOnEmail() {
+        Student newStudent1 = new Student("1111", "Ana", 100, "s1@email.com");
+        Student newStudent2 = new Student("1111211", "", 100, "");
+        Student newStudent3 = new Student("1111211", null, 100, "null");
+        this.service.addStudent(newStudent1);
+        java.util.Iterator<Student> students = this.service.getAllStudenti().iterator();
+        assertEquals(students.next(), newStudent1);
+        assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent2));
+        assertThrows(ValidationException.class, () -> this.service.addStudent(newStudent3));
+
+        this.service.deleteStudent("1111");
     }
 }
