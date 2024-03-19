@@ -58,6 +58,7 @@ public class Service {
      * @return null daca studentul a fost adaugat cu succes sau studentul din memorie daca acesta exista deja
      */
     public Student addStudent(Student student) {
+        if (findStudent(student.getID()) != null) throw new ValidationException("Duplicate ID.");
         studentValidator.validate(student);
         return studentFileRepository.save(student);
     }
